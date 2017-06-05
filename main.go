@@ -1,7 +1,14 @@
-package main
+package shifu
+
 
 import (
 	"github.com/tj/docopt"
+	"fmt"
+	//"net/http"
+	"log"
+	//"io"
+	//"os"
+	//"time"
 )
 
 var version = "0.0.1"
@@ -25,12 +32,14 @@ const usage = `
 func main() {
 	args, err := docopt.Parse(usage, nil, true, version, true)
 	if err != nil {
-		cli.Fatalf("error parsing arguments: %s", err)
+		log.Fatal("error parsing arguments",err)
 	}
 
-	file := args["--testSeriesfile"].(string)
-	c, err := config.New(file)
-	if err != nil {
-		cli.Fatalf("error loading Testseries File: %s", err)
-	}
+	fmt.Println("asd", args)
+
+	//file := args["--testSeriesfile"].(string)
+	//c, err := config.New(file)
+	//if err != nil {
+	//	log.Fatal("error loading Testseries File",err)
+	//}
 }
