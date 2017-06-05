@@ -1,10 +1,10 @@
-package shifu
+package main
 
 
 import (
 	"github.com/tj/docopt"
 	"fmt"
-	//"net/http"
+	"net/http"
 	"log"
 	//"io"
 	//"os"
@@ -37,7 +37,8 @@ func main() {
 
 	fmt.Println("asd", args)
 
-	//file := args["--testSeriesfile"].(string)
+	file := args["--testSeriesfile"].(string)
+
 	//c, err := config.New(file)
 	//if err != nil {
 	//	log.Fatal("error loading Testseries File",err)

@@ -11,13 +11,16 @@ go get github.com/tj/docopt
 ```
 
 
-# Build
+# Install locally:
+```
+go install
+```
+
 
 # Run
 
 ```
-go run main.go --help
+shifu --
 go run main.go --version
+
 ```
-
-
