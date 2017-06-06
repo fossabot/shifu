@@ -18,9 +18,7 @@ go install
 
 
 # Run
-
 ```
-shifu --
-go run main.go --version
-
+shifu run --testSeriesfile=<full_path_of_test_describer_yaml_file>
+shifu --version
 ```

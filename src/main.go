@@ -4,14 +4,13 @@ package main
 import (
 	"github.com/docopt/docopt-go"
 	"fmt"
-	//"sort"
-	//"net/http"
-	"log"
-	//"reflect"
+	"net/http"
+	//"log"
+	//"io"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
-	//"os"
-	//"time"
+	"os"
+	"time"
 )
 
 var version = "0.0.1"
@@ -42,8 +41,9 @@ type TestDescriber struct {
 
 type Command struct {
     Order_id int
+    Comment string
     Type string
-    Request_type string
+    Method string
     Url string
     Data string
     Expect Expect
@@ -53,60 +53,73 @@ type Command struct {
 }
 
 type Expect struct {
-	File string
+	Value string
 	Respones_code int
 	Type string
 }
 
+func assertEquealString(actual string, expected string) {
+	if actual != expected {
+		fmt.Printf("❌ didnt match expected result, expected: %v ,found: %v\n" , expected, actual)
+		os.Exit(1)
+	} else {
+		fmt.Printf("✅ matched result: %v\n", expected)
+	}
+}
 
 
+func assertEquealInt(actual int, expected int) {
+	if actual != expected {
+		fmt.Printf("❌ didnt match expected result, expected: %v ,found: %v\n" , expected, actual)
+		os.Exit(1)
+	} else {
+		fmt.Printf("✅ matched result: %v\n", expected)
+	}
+}
+
+
+func processTestSeriesFile(file string) {
+	fmt.Println("the file with instruction: " , file)
+
+	yamlFile, _ := ioutil.ReadFile(file)
+		
+	testDescriber := TestDescriber{}
+
+    yaml.Unmarshal([]byte(yamlFile), &testDescriber)
+    
+    fmt.Println("🐼 Running Test Describer " + testDescriber.Test_name)
+    fmt.Println(testDescriber.Comment)
+
+
+    tr := &http.Transport{
+		MaxIdleConns:       10,
+		IdleConnTimeout:    30 * time.Second,
+		DisableCompression: true,
+	}
+	client := &http.Client{Transport: tr}
+
+	for _, command := range testDescriber.Command_sequence {
+		fmt.Println("🐯 " + command.Comment)
+		req, _ := http.NewRequest(command.Method, command.Url, nil)
+		for key, val := range command.Headers {
+			req.Header.Add(key,val)
+		}
+
+		resp, _ := client.Do(req)
+	    defer resp.Body.Close()
+		byteArray, _ := ioutil.ReadAll(resp.Body)
+		assertEquealInt(resp.StatusCode, command.Expect.Respones_code)
+		assertEquealString(string(byteArray[:]), command.Expect.Value)
+	}
+}
 
 func main() {
 
-	args, err := docopt.Parse(usage, nil, false, version, false)
-	if err != nil {
-		log.Fatal("error parsing arguments",err)
-	}
+	args, _ := docopt.Parse(usage, nil, false, version, false)
 	files, _ := args["--testSeriesfile"].([]string)
-	for _,file := range files {
-		fmt.Println("the file with instruction: " , file)
-
-		
-		yamlFile, err := ioutil.ReadFile(file)
-		if err != nil {
-		    panic(err)
-		}
-		
-		testDescriber := TestDescriber{}
-
-	    err = yaml.Unmarshal([]byte(yamlFile), &testDescriber)
-	    if err != nil {
-	        panic(err)
-	    }
-
-	    fmt.Printf("--- t:\n%v\n\n", testDescriber.Command_sequence[0].Type)
-	}
-
-	/*
-	yamlFile, err := ioutil.ReadFile(file)
-    if err != nil {
-        panic(err)
-    }
-
-
-    var testDescriber TestDescriber
-
-    err = yaml.Unmarshal(yamlFile, &testDescriber)
-    if err != nil {
-        panic(err)
-    }
-
-    fmt.Printf("Value: %#v\n", testDescriber.test_name)
 	
-	*/
-	//c, err := config.New(file)
-	//if err != nil {
-	//	log.Fatal("error loading Testseries File",err)
-	//}
+	for _,file := range files {
+		processTestSeriesFile(file)
+	}
 }
 
