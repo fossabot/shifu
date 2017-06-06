@@ -1,34 +1,33 @@
-test_describer:
-  test_name: "My Cool sample test 1"
-  comment: "This test runs a series of GET requests"
-  command_sequence:
-    -
-      order_id: 1
-      type: http_request
-      request_type: GET
-      url: "http://localhost:3194/v1/ayon/controller/test1"
-      data: ""
-      expect:
-        file: output11.json
-        respones_code: 200
-        type: file_json
-      headers:
-        Accept: application/json
-      repeat_times: 1
-      waiting_time: 10
-    -
-      order_id: 2
-      type: http_request
-      request_type: GET
-      url: "http://localhost:3194/v1/ayon/controller/test2"
-      data: ""
-      expect:
-        type: file_json
-        file: output12.json
-        respones_code: 200
-      headers:
-        Accept: application/json
-      repeat_times: 1
-      waiting_time: 10
+test_name: "My Cool sample test 1"
+comment: "This test runs a series of GET requests"
+command_sequence:
+  -
+    order_id: 1
+    type: http_request
+    request_type: GET
+    url: "http://localhost:3194/v1/ayon/controller/test1"
+    data: ""
+    expect:
+      file: output11.json
+      respones_code: 200
+      type: file_json
+    headers:
+      Accept: application/json
+    repeat_times: 1
+    waiting_time: 10
+  -
+    order_id: 2
+    type: http_request
+    request_type: GET
+    url: "http://localhost:3194/v1/ayon/controller/test2"
+    data: ""
+    expect:
+      type: file_json
+      file: output12.json
+      respones_code: 200
+    headers:
+      Accept: application/json
+    repeat_times: 1
+    waiting_time: 10
 
 
