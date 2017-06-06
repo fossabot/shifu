@@ -7,7 +7,8 @@ A simple YAML based application that will help you to test your application with
 ## Dependencies Installation
 ```
 go get gopkg.in/yaml.v2
-go get github.com/tj/docopt
+go get github.com/docopt/docopt-go
+go get net/http
 ```
 
 
