@@ -12,7 +12,7 @@ go get net/http
 ```
 
 
-# Install locally:
+## Install locally:
 ```
 go install
 ```
