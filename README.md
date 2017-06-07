@@ -4,7 +4,7 @@ A simple YAML based application that will help you to test your application with
 
 # Installation
 
-## Dependencies Installation
+## Dependencies
 ```
 go get gopkg.in/yaml.v2
 go get github.com/docopt/docopt-go
@@ -12,7 +12,7 @@ go get net/http
 ```
 
 
-## Install locally:
+## Local Installation:
 ```
 go install
 ```

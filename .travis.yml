@@ -1,0 +1,9 @@
+language: go
+
+go:
+  - 1.6
+
+install:
+  - go get gopkg.in/yaml.v2
+  - go get net/http
+  - go get github.com/docopt/docopt-go

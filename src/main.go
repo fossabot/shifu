@@ -77,20 +77,9 @@ func assertEquealInt(actual int, expected int) {
 	}
 }
 
-
-func processTestSeriesFile(file string) {
-	fmt.Println("the file with instruction: " , file)
-
-	yamlFile, _ := ioutil.ReadFile(file)
-		
-	testDescriber := TestDescriber{}
-
-    yaml.Unmarshal([]byte(yamlFile), &testDescriber)
-    
-    fmt.Println("🐼 Running Test Describer " + testDescriber.Test_name)
+func processTestDescriber(testDescriber TestDescriber) {
+	fmt.Println("🐼 Running Test Describer " + testDescriber.Test_name)
     fmt.Println(testDescriber.Comment)
-
-
     tr := &http.Transport{
 		MaxIdleConns:       10,
 		IdleConnTimeout:    30 * time.Second,
@@ -111,6 +100,14 @@ func processTestSeriesFile(file string) {
 		assertEquealInt(resp.StatusCode, command.Expect.Respones_code)
 		assertEquealString(string(byteArray[:]), command.Expect.Value)
 	}
+}
+
+func processTestSeriesFile(file string) {
+	fmt.Println("the file with instruction: " , file)
+	yamlFile, _ := ioutil.ReadFile(file)
+	testDescriber := TestDescriber{}
+    yaml.Unmarshal([]byte(yamlFile), &testDescriber)
+    processTestDescriber(testDescriber)
 }
 
 func main() {
