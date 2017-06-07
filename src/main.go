@@ -81,8 +81,6 @@ func processTestDescriber(testDescriber TestDescriber) {
 	fmt.Println("🐼 Running Test Describer " + testDescriber.Test_name)
     fmt.Println(testDescriber.Comment)
     tr := &http.Transport{
-		MaxIdleConns:       10,
-		IdleConnTimeout:    30 * time.Second,
 		DisableCompression: true,
 	}
 	client := &http.Client{Transport: tr}
