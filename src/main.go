@@ -5,12 +5,9 @@ import (
 	"github.com/docopt/docopt-go"
 	"fmt"
 	"net/http"
-	//"log"
-	//"io"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
 	"os"
-	"time"
 )
 
 var version = "0.0.1"
