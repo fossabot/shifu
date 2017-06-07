@@ -20,7 +20,7 @@ after_success:
 
 deploy:
   provider: releases
-  api_key: "f64ee08206f7f2ba3bacdea4b0ac1ef66c7b0e9e"
+  api_key: "d9df3bbd0252d276272f3b8be5970644db88a9ce"
   file: "shifu"
   skip_cleanup: true
   on:
