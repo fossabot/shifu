@@ -24,4 +24,5 @@ go install
 ```
 shifu run --testSeriesfile=<full_path_of_test_describer_yaml_file>
 shifu --version
+shifu --version
 ```
