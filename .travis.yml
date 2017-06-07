@@ -15,13 +15,5 @@ script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t 654e6886-eb06-4f3a-b9d2-6256bb03e477
-
-
-deploy:
-  provider: releases
-  api_key: "f64ee08206f7f2ba3bacdea4b0ac1ef66c7b0e9e"
-  file: "shifu"
-  skip_cleanup: true
-  on:
-    tags: true
+  - bash <(curl -s https://codecov.io/bash)
+  
