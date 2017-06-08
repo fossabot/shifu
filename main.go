@@ -1,4 +1,4 @@
-package main
+package shifu
 
 
 import (
@@ -55,7 +55,7 @@ type Expect struct {
 	Type string
 }
 
-func assertEquealString(actual string, expected string) {
+func AssertEquealString(actual string, expected string) {
 	if actual != expected {
 		fmt.Printf("❌ didnt match expected result, expected: %v ,found: %v\n" , expected, actual)
 		os.Exit(1)
@@ -65,7 +65,7 @@ func assertEquealString(actual string, expected string) {
 }
 
 
-func assertEquealInt(actual int, expected int) {
+func AssertEquealInt(actual int, expected int) {
 	if actual != expected {
 		fmt.Printf("❌ didnt match expected result, expected: %v ,found: %v\n" , expected, actual)
 		os.Exit(1)
@@ -74,7 +74,7 @@ func assertEquealInt(actual int, expected int) {
 	}
 }
 
-func processTestDescriber(testDescriber TestDescriber) {
+func ProcessTestDescriber(testDescriber TestDescriber) {
 	fmt.Println("🐼 Running Test Describer " + testDescriber.Test_name)
     fmt.Println(testDescriber.Comment)
     tr := &http.Transport{
@@ -92,17 +92,17 @@ func processTestDescriber(testDescriber TestDescriber) {
 		resp, _ := client.Do(req)
 	    defer resp.Body.Close()
 		byteArray, _ := ioutil.ReadAll(resp.Body)
-		assertEquealInt(resp.StatusCode, command.Expect.Respones_code)
-		assertEquealString(string(byteArray[:]), command.Expect.Value)
+		AssertEquealInt(resp.StatusCode, command.Expect.Respones_code)
+		AssertEquealString(string(byteArray[:]), command.Expect.Value)
 	}
 }
 
-func processTestSeriesFile(file string) {
+func ProcessTestSeriesFile(file string) {
 	fmt.Println("the file with instruction: " , file)
 	yamlFile, _ := ioutil.ReadFile(file)
 	testDescriber := TestDescriber{}
     yaml.Unmarshal([]byte(yamlFile), &testDescriber)
-    processTestDescriber(testDescriber)
+    ProcessTestDescriber(testDescriber)
 }
 
 func main() {
@@ -111,7 +111,7 @@ func main() {
 	files, _ := args["--testSeriesfile"].([]string)
 	
 	for _,file := range files {
-		processTestSeriesFile(file)
+		ProcessTestSeriesFile(file)
 	}
 }
 
