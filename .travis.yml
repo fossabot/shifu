@@ -19,10 +19,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
-  - test $TRAVIS_TEST_RESULT = 0 \# check that build passed successfully
-  && mkdir $GOPATH/bin/$OS-$TRAVIS_GO_VERSION/ \
-  && cd $GOPATH/bin/
-  && tar cvf $OS-$TRAVIS_GO_VERSION.tar shifu 
+  - test $TRAVIS_TEST_RESULT = 0 && cd $GOPATH/bin/ && tar cvf $OS-$TRAVIS_GO_VERSION.tar shifu 
 
 deploy:
   provider: releases
