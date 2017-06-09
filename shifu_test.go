@@ -6,9 +6,9 @@ import (
 )
 
 func TestAssertStr(t *testing.T) {
-	shifu.AssertEquealString("stra","stra")
+	main.AssertEquealString("stra","stra")
 }
 
 func TestAssertInt(t *testing.T) {
-	shifu.AssertEquealInt(10,10)
+	main.AssertEquealInt(10,10)
 }
