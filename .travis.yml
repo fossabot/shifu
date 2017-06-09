@@ -19,6 +19,8 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
+  - cd $TRAVIS_BUILD_DIR && tree
+  - cd $GOPATH && tree
   - test $TRAVIS_TEST_RESULT = 0 && cd $TRAVIS_BUILD_DIR && tar cvf $OS-$TRAVIS_GO_VERSION.tar shifu 
 
 deploy:
