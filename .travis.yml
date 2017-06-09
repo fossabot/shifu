@@ -22,13 +22,13 @@ before_deploy:
   - test $TRAVIS_TEST_RESULT = 0
   - cd $TRAVIS_BUILD_DIR 
   - go build -o shifu 
-  - tar cvf $TRAVIS_OS_NAMEGO$TRAVIS_GO_VERSION.tar shifu 
+  - tar cvf $TRAVIS_OS_NAME-GO$TRAVIS_GO_VERSION.tar shifu 
 
 deploy:
   provider: releases
   api_key:
     secure: R4Llhk6rDrrXKEh8ro/LTqk3e3SpZQhaDLI5Uz2w/2OkI822tlPtHhJfIDm7BjcSPhuNCJLfudxfGcbl0vBEnslK1L8fLyWsgobwQsIyVyszuWfRJBx97pkG2njK1jemybYABt5uCKYTxa0WcdZzHPiLIyMaPRnGpN7UREqqvnpHCa2UncXT6LEdz7MOEpUkkCOcMGSSpW1QUqlYmIhPCMtiuOI63mS2tBC8d8O7KpPy3lOQ59jtbh93wSSKRDCcPnoXjttbOpVEu1hcAzTmzplatM0T73rIiGadRDQ209IW78ezTMkuaYn9OCciql2X1+ulj92+8+cbnRDT3Cpv2aSd1AwPTWKq4tkWbWlLooXVtmJCxpadMnwXfmX5rwIxQvzt7XW3vtf1K7U84vew+wivx5vgsmTJsQx0V+4Ua1ilBbtZx9e8J6qBpjI7dXyKANB0K2wg7xxwGUMwaG/I5qdYmIX1G5tnHPWxR/o1l62pPGhRYSPuJobpx5USgcs1iHLifVz2SOi3+8PxLhbNEdqqio40Byrh73rzdvk1T9X1OcBOhCfAh5CTirK2EdwXDqnZpFaAGEpvmr8IU0ztaFZA/gbhvzHrjscP6MNr0emmF1CBzqQ6xIdFB+m65HvrBpta//0j41QZiKR/92FI8HgixA2+nPnqAy7ICJMCZns=
-  file: $TRAVIS_BUILD_DIR/$TRAVIS_OS_NAMEGO$TRAVIS_GO_VERSION.tar
+  file: $TRAVIS_BUILD_DIR/$TRAVIS_OS_NAME-GO$TRAVIS_GO_VERSION.tar
   skip_cleanup: true
   on:
     repo: ayonious/shifu
