@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-var version = "0.0.4"
+var version = "0.0.5"
 
 const usage = `
   Usage:
