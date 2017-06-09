@@ -1,4 +1,4 @@
-package shifu_test
+package main_test
 
 import (
 	"github.com/ayonious/shifu"

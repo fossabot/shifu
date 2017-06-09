@@ -1,4 +1,4 @@
-package shifu
+package main
 
 
 import (
@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-var version = "0.0.3"
+var version = "0.0.4"
 
 const usage = `
   Usage:
