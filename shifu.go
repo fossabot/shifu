@@ -9,51 +9,6 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-var version = "0.0.5"
-
-const usage = `
-  Usage:
-    shifu run [--testSeriesfile=<file>]
-    shifu -h | --help
-    shifu --version
-  Options:
-    -t, --testSeriesfile file   test file to execute
-    -h, --help          		output help information
-    -v, --version       		output version
-  Examples:
-    output tasks
-    $ shifu
-    run a test series
-    $ shifu run -t test1.yaml
-`
-
-
-type TestDescriber struct {
-    Test_name string
-    Comment string
-    Command_sequence []Command
-}
-
-
-type Command struct {
-    Order_id int
-    Comment string
-    Type string
-    Method string
-    Url string
-    Data string
-    Expect Expect
-    Headers map[string]string
-    Repeat_times int
-    Waiting_time int
-}
-
-type Expect struct {
-	Value string
-	Respones_code int
-	Type string
-}
-
 func ProcessTestDescriber(testDescriber TestDescriber) {
 	fmt.Println("🐼 Running Test Describer " + testDescriber.Test_name)
     fmt.Println(testDescriber.Comment)
