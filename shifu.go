@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"io/ioutil"
 	"gopkg.in/yaml.v2"
-	"os"
 )
 
 var version = "0.0.5"
@@ -53,25 +52,6 @@ type Expect struct {
 	Value string
 	Respones_code int
 	Type string
-}
-
-func AssertEquealString(actual string, expected string) {
-	if actual != expected {
-		fmt.Printf("❌ didnt match expected result, expected: %v ,found: %v\n" , expected, actual)
-		os.Exit(1)
-	} else {
-		fmt.Printf("✅ matched result: %v\n", expected)
-	}
-}
-
-
-func AssertEquealInt(actual int, expected int) {
-	if actual != expected {
-		fmt.Printf("❌ didnt match expected result, expected: %v ,found: %v\n" , expected, actual)
-		os.Exit(1)
-	} else {
-		fmt.Printf("✅ matched result: %v\n", expected)
-	}
 }
 
 func ProcessTestDescriber(testDescriber TestDescriber) {
