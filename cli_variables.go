@@ -1,14 +1,5 @@
 package main
 
-
-import (
-	"github.com/docopt/docopt-go"
-	"fmt"
-	"net/http"
-	"io/ioutil"
-	"gopkg.in/yaml.v2"
-)
-
 var version = "0.0.5"
 
 const usage = `
